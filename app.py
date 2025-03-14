@@ -119,7 +119,7 @@ if exclude_text:
         filtered_df = filtered_df[~filtered_df["description"].str.contains(term.strip(), case=False, na=False)]
 
 # Añadir filtro predefinido para excluir propiedades problemáticas
-exclude_default = "subasta| puja|local sin cambio de uso|cambio de uso|nuda propiedad|no se puede hipotecar|ocupado|ocupada|pujas|ocupacional|ilegal|okupada|okupado|sin posesi|procedimiento judicial|alquilado"
+exclude_default = "subasta| puja|local sin cambio de uso|cambio de uso|posisio|nuda propiedad|no se puede hipotecar|ocupado|ocupada|pujas|ocupacional|ilegal|okupada|okupado|sin posesi|procedimiento judicial|alquilado"
 filtered_df = filtered_df[~filtered_df["description"].str.contains(exclude_default, case=False, na=False)]
 
 # Mostrar los resultados filtrados
