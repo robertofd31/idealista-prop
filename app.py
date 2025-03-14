@@ -98,7 +98,7 @@ filtered_df = df_properties[
     (df_properties["rooms"] <= max_rooms) &
     (df_properties["size"] >= min_size) &
     (df_properties["bathrooms"] >= min_bathrooms) &
-    (df_properties['features'].str.contains('occupation.illegallyOccupied|occupation.bareOwnership', case=False, na=False))
+    (~df_properties['features'].str.contains('occupation.illegallyOccupied|occupation.bareOwnership', case=False, na=False))
 ]
 
 # Filtrar por municipios seleccionados
