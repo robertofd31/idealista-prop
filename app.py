@@ -186,7 +186,14 @@ for _, row in filtered_df.iterrows():
         price_per_sqm = round(row['price'] / row['size'], 2) if row['size'] > 0 else "N/A"
         st.markdown(f"**Precio/m²:** {price_per_sqm} €/m²")
 
-        st.markdown(f"**Descripción:** {row['description'][:200]}...")  # Mostrar solo los primeros 200 caracteres
+       
+        # Por esta versión más segura:
+        if pd.notna(row.get('description')) and isinstance(row['description'], str):
+            desc_text = row['description'][:200] + "..."
+        else:
+            desc_text = "Sin descripción disponible"
+        st.markdown(f"**Descripción:** {desc_text}")
+        # Mostrar solo los primeros 200 caracteres
         st.markdown(f"[Ver en Idealista]({row['url']})")  # Enlace a la página de Idealista
 
 # Si no hay resultados
