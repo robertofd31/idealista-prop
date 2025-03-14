@@ -33,7 +33,7 @@ if "priceInfo" in df_properties.columns:
 # Filtrar propiedades no deseadas en la descripción
 df_properties = df_properties[
     ~df_properties['description'].str.contains(
-        'subasta|nuda propiedad|no se puede hipotecar|ocupado|ocupada|pujas|ocupacional|ilegal|okupado|sin posesi|procedimiento judicial|alquilado',
+        'subasta|local sin cambio de uso|nuda propiedad|no se puede hipotecar|ocupado|ocupada|pujas|ocupacional|ilegal|okupado|sin posesi|procedimiento judicial|alquilado',
         case=False, na=False
     )
 ]
