@@ -4,6 +4,13 @@ import folium
 from streamlit_folium import folium_static
 import numpy as np
 
+def contains_illegal_occupation(labels):
+    if isinstance(labels, list):  # Verifica si es una lista
+        for label in labels:
+            if isinstance(label, dict) and label.get('name') in ['occupation.illegallyOccupied', 'occupation.bareOwnership']:
+                return True
+    return False
+    
 # Función para aplanar diccionarios
 def flatten_dict(d, parent_key='', sep='_'):
     """
@@ -98,7 +105,7 @@ filtered_df = df_properties[
     (df_properties["rooms"] <= max_rooms) &
     (df_properties["size"] >= min_size) &
     (df_properties["bathrooms"] >= min_bathrooms) &
-    (~df_properties['features'].str.contains('occupation.illegallyOccupied|occupation.bareOwnership', case=False, na=False))
+    (~df_properties["labels"].apply(contains_illegal_occupation))
 ]
 
 # Filtrar por municipios seleccionados
